@@ -1,1 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CAN / CAN'T — Learn English! 🌟</title>
+  <meta name="description" content="Interactive English learning site for kids: CAN / CAN'T at A1–A2 level"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
 
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="nav-container">
+    <a class="site-logo" href="#" onclick="showSection('home')">
+      <span>⭐</span> CAN / CAN'T
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleNav()">☰</button>
+    <ul class="nav-menu" id="navMenu">
+      <li><a onclick="showSection('home')">🏠 Home</a></li>
+      <li><a onclick="showSection('grammar')">📖 Grammar</a></li>
+      <li><a onclick="showSection('glossary')">📚 Glossary</a></li>
+      <li><a onclick="showSection('exercises')">✏️ Exercises</a></li>
+      <li><a onclick="showSection('games')">🎮 Games</a></li>
+      <li><a onclick="showSection('quiz')">🏆 Final Quiz</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="teacher-btn" id="teacherBtn" onclick="toggleTeacherModal()">🔐 Teacher</button>
+    </div>
+  </div>
+  <!-- Progress bar -->
+  <div class="progress-bar-container">
+    <div class="progress-inner">
+      <span class="progress-label" id="progressLabel">Progress</span>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+      </div>
+      <span class="progress-pct" id="progressPct">0%</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== HOME ===== -->
+<section class="section-page active" id="section-home">
+  <div class="hero star-bg">
+    <div class="hero-greeting" id="heroGreeting">Hi there! 👋</div>
+    <div class="hero-sub">Welcome to your CAN / CAN'T English adventure!</div>
+    <div class="name-section" id="nameSection">
+      <label class="name-label" for="nameInput">✏️ Student Name</label>
+      <span class="name-label-es">Escribe tu nombre</span>
+      <div class="name-input-row">
+        <input type="text" id="nameInput" class="name-input" placeholder="Your name..." maxlength="20" autocomplete="off"/>
+        <button class="btn btn-primary btn-sm" onclick="saveName()">Save 💾</button>
+      </div>
+      <div class="name-error" id="nameError"></div>
+    </div>
+    <!-- Shown when name is set -->
+    <div id="nameDisplay" class="hidden" style="position:relative;z-index:1;margin-top:12px;">
+      <button class="btn btn-outline btn-sm" onclick="editName()" style="color:white;border-color:white;">✏️ Change name</button>
+    </div>
+  </div>
+
+  <!-- Motivational (shown after name saved) -->
+  <div class="motivational hidden" id="motivationalMsg">⭐ Keep going!</div>
+
+  <!-- Topic cards -->
+  <div class="card">
+    <div class="card-title">📚 What will you learn?</div>
+    <p style="margin-bottom:16px;color:var(--text-light);">Click any topic to start learning! <em>(Haz clic para empezar)</em></p>
+    <div class="topics-grid">
+      <div class="topic-card" onclick="showSection('grammar')" id="topic-grammar">
+        <span class="icon">📖</span>
+        <div class="title">Grammar Rules</div>
+        <div class="done-badge">✓</div>
+      </div>
+      <div class="topic-card" onclick="showSection('glossary')" id="topic-glossary">
+        <span class="icon">📚</span>
+        <div class="title">Verb Glossary</div>
+        <div class="done-badge">✓</div>
+      </div>
+      <div class="topic-card" onclick="showSection('exercises')" id="topic-exercises">
+        <span class="icon">✏️</span>
+        <div class="title">Exercises</div>
+        <div class="done-badge">✓</div>
+      </div>
+      <div class="topic-card" onclick="showSection('games')" id="topic-games">
+        <span class="icon">🎮</span>
+        <div class="title">Mini-Games</div>
+        <div class="done-badge">✓</div>
+      </div>
+      <div class="topic-card" onclick="showSection('quiz')" id="topic-quiz">
+        <span class="icon">🏆</span>
+        <div class="title">Final Quiz</div>
+        <div class="done-badge">✓</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick summary -->
+  <div class="card">
+    <div class="card-title">⚡ Quick Summary</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
+      <div style="background:#DCFCE7;border:2px solid #86EFAC;border-radius:12px;padding:14px;text-align:center;">
+        <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--green);">CAN ✅</div>
+        <div style="font-size:0.88rem;margin-top:6px;">Ability, permission, possibility<br/><em style="color:var(--text-light);">Habilidad, permiso, posibilidad</em></div>
+      </div>
+      <div style="background:#FEE2E2;border:2px solid #FCA5A5;border-radius:12px;padding:14px;text-align:center;">
+        <div style="font-family:var(--font-display);font-size:1.5rem;color:var(--red);">CAN'T ❌</div>
+        <div style="font-size:0.88rem;margin-top:6px;">No ability, not allowed<br/><em style="color:var(--text-light);">Sin habilidad, no permitido</em></div>
+      </div>
+      <div style="background:#EEF2FF;border:2px solid #C7D2FE;border-radius:12px;padding:14px;text-align:center;">
+        <div style="font-family:var(--font-display);font-size:1.1rem;color:var(--purple);">Can you...? ❓</div>
+        <div style="font-size:0.88rem;margin-top:6px;">Question form<br/><em style="color:var(--text-light);">Forma interrogativa</em></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GRAMMAR ===== -->
+<section class="section-page" id="section-grammar">
+  <div class="section-hero" data-emoji="📖">
+    <h1>Grammar: CAN / CAN'T</h1>
+    <p>Learn the rules step by step! <em>(¡Aprende las reglas paso a paso!)</em></p>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('grammar','meaning')">Meaning</button>
+    <button class="tab-btn" onclick="switchTab('grammar','structure')">Structure</button>
+    <button class="tab-btn" onclick="switchTab('grammar','short-answers')">Short Answers</button>
+    <button class="tab-btn" onclick="switchTab('grammar','rules')">Key Rules</button>
+    <button class="tab-btn" onclick="switchTab('grammar','context')">In Context</button>
+    <button class="tab-btn" onclick="switchTab('grammar','errors')">Common Errors</button>
+  </div>
+
+  <!-- Meaning tab -->
+  <div class="tab-panel active" id="grammar-meaning">
+    <div class="card">
+      <div class="card-title">💡 What does CAN mean?</div>
+      <div class="grammar-box">
+        <h3>1. Ability (Habilidad)</h3>
+        <p style="margin-bottom:8px;">We use <strong>CAN</strong> to say someone is able to do something.</p>
+        <ul class="example-list">
+          <li><span class="en">I <strong>can</strong> swim.</span><span class="es">Yo sé nadar.</span></li>
+          <li><span class="en">She <strong>can</strong> play the piano.</span><span class="es">Ella sabe tocar el piano.</span></li>
+          <li><span class="en">Birds <strong>can</strong> fly.</span><span class="es">Los pájaros pueden volar.</span></li>
+        </ul>
+      </div>
+      <div class="grammar-box">
+        <h3>2. Permission (Permiso)</h3>
+        <p style="margin-bottom:8px;">We use <strong>CAN</strong> to ask for or give permission.</p>
+        <ul class="example-list">
+          <li><span class="en"><strong>Can</strong> I go to the bathroom?</span><span class="es">¿Puedo ir al baño?</span></li>
+          <li><span class="en">You <strong>can</strong> go now.</span><span class="es">Puedes irte ahora.</span></li>
+        </ul>
+      </div>
+      <div class="grammar-box">
+        <h3>3. Possibility (Posibilidad simple)</h3>
+        <p style="margin-bottom:8px;">We use <strong>CAN</strong> to talk about simple possibilities.</p>
+        <ul class="example-list">
+          <li><span class="en">It <strong>can</strong> rain today.</span><span class="es">Puede llover hoy.</span></li>
+          <li><span class="en">Anyone <strong>can</strong> make mistakes.</span><span class="es">Cualquiera puede cometer errores.</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🚫 What does CAN'T mean?</div>
+      <div class="grammar-box">
+        <h3>CAN'T = No ability / Not allowed / Not possible</h3>
+        <ul class="example-list">
+          <li><span class="en">I <strong>can't</strong> fly.</span><span class="es">No puedo volar. (No tengo esa habilidad)</span></li>
+          <li><span class="en">You <strong>can't</strong> run in the classroom.</span><span class="es">No puedes correr en el aula. (No está permitido)</span></li>
+          <li><span class="en">It <strong>can't</strong> snow in summer here.</span><span class="es">No puede nevar aquí en verano.</span></li>
+        </ul>
+        <div style="margin-top:12px;padding:10px;background:white;border-radius:8px;font-size:0.88rem;">
+          <strong>📝 Note:</strong> <strong>can't</strong> is short for <strong>cannot</strong>. Both are correct!<br/>
+          <em style="color:var(--text-light);">Nota: "can't" es la forma corta de "cannot". ¡Las dos son correctas!</em><br/>
+          <span class="pronounce" style="margin-top:6px;display:inline-block;">🔊 can't has a clear /t/ sound!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Structure tab -->
+  <div class="tab-panel" id="grammar-structure">
+    <div class="card">
+      <div class="card-title">🏗️ Sentence Structure</div>
+      <div class="grammar-box">
+        <h3>✅ Affirmative (Afirmativa)</h3>
+        <div class="formula-box">Subject + CAN + base verb</div>
+        <ul class="example-list">
+          <li><span class="en">She <strong>can</strong> dance.</span><span class="es">Ella puede bailar.</span></li>
+          <li><span class="en">They <strong>can</strong> play football.</span><span class="es">Ellos pueden jugar al fútbol.</span></li>
+          <li><span class="en">I <strong>can</strong> help you.</span><span class="es">Yo puedo ayudarte.</span></li>
+        </ul>
+      </div>
+      <div class="grammar-box">
+        <h3>❌ Negative (Negativa)</h3>
+        <div class="formula-box">Subject + CAN'T / CANNOT + base verb</div>
+        <ul class="example-list">
+          <li><span class="en">He <strong>can't</strong> fly.</span><span class="es">Él no puede volar.</span></li>
+          <li><span class="en">I <strong>cannot</strong> run fast.</span><span class="es">No puedo correr rápido.</span></li>
+          <li><span class="en">We <strong>can't</strong> swim here.</span><span class="es">No podemos nadar aquí.</span></li>
+        </ul>
+      </div>
+      <div class="grammar-box">
+        <h3>❓ Interrogative (Interrogativa)</h3>
+        <div class="formula-box">CAN + subject + base verb + ?</div>
+        <ul class="example-list">
+          <li><span class="en"><strong>Can</strong> you help me?</span><span class="es">¿Puedes ayudarme?</span></li>
+          <li><span class="en"><strong>Can</strong> he ride a bike?</span><span class="es">¿Él sabe montar bicicleta?</span></li>
+          <li><span class="en"><strong>Can</strong> they speak English?</span><span class="es">¿Ellos pueden hablar inglés?</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🎯 Functional Language</div>
+      <table class="grammar-table">
+        <thead><tr><th>Use</th><th>Example</th><th>Translation</th></tr></thead>
+        <tbody>
+          <tr><td>Request</td><td><strong>Can you</strong> open the door?</td><td>¿Puedes abrir la puerta?</td></tr>
+          <tr><td>Permission</td><td><strong>Can I</strong> use your pencil?</td><td>¿Puedo usar tu lápiz?</td></tr>
+          <tr><td>Ability</td><td>What <strong>can</strong> you do?</td><td>¿Qué sabes hacer?</td></tr>
+          <tr><td>Offer</td><td><strong>I can</strong> help you.</td><td>Puedo ayudarte.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Short answers tab -->
+  <div class="tab-panel" id="grammar-short-answers">
+    <div class="card">
+      <div class="card-title">⚡ Short Answers</div>
+      <p style="margin-bottom:12px;">In English, we usually give <strong>short answers</strong> instead of repeating the whole sentence. <em>(En inglés usamos respuestas cortas.)</em></p>
+      <table class="grammar-table">
+        <thead>
+          <tr><th>Question</th><th>Yes ✅</th><th>No ❌</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Can <strong>I</strong> …?</td><td>Yes, <strong>you</strong> can.</td><td>No, <strong>you</strong> can't.</td></tr>
+          <tr><td>Can <strong>you</strong> …?</td><td>Yes, <strong>I</strong> can.</td><td>No, <strong>I</strong> can't.</td></tr>
+          <tr><td>Can <strong>he</strong> …?</td><td>Yes, <strong>he</strong> can.</td><td>No, <strong>he</strong> can't.</td></tr>
+          <tr><td>Can <strong>she</strong> …?</td><td>Yes, <strong>she</strong> can.</td><td>No, <strong>she</strong> can't.</td></tr>
+          <tr><td>Can <strong>it</strong> …?</td><td>Yes, <strong>it</strong> can.</td><td>No, <strong>it</strong> can't.</td></tr>
+          <tr><td>Can <strong>we</strong> …?</td><td>Yes, <strong>we</strong> can.</td><td>No, <strong>we</strong> can't.</td></tr>
+          <tr><td>Can <strong>they</strong> …?</td><td>Yes, <strong>they</strong> can.</td><td>No, <strong>they</strong> can't.</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:16px;padding:14px;background:#EEF2FF;border-radius:12px;">
+        <strong>💡 Remember: / Recuerda:</strong>
+        <ul style="margin-top:8px;list-style:disc;padding-left:20px;font-size:0.92rem;line-height:1.8;">
+          <li>When someone asks "Can <strong>you</strong>…?", answer with "<strong>I</strong> can" / "<strong>I</strong> can't"</li>
+          <li>When someone asks "Can <strong>I</strong>…?", answer with "<strong>you</strong> can" / "<strong>you</strong> can't"</li>
+          <li>Always use the correct pronoun! <em>(¡Usa siempre el pronombre correcto!)</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Rules tab -->
+  <div class="tab-panel" id="grammar-rules">
+    <div class="card">
+      <div class="card-title">📌 Key Grammar Rules</div>
+
+      <div class="grammar-box" style="margin-bottom:14px;">
+        <h3>Rule 1: Always use BASE verb after CAN/CAN'T</h3>
+        <p>After <strong>can</strong> or <strong>can't</strong>, NEVER add -ing, -s, -ed, or "to".</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
+          <div style="flex:1;min-width:150px;background:#FEE2E2;padding:10px;border-radius:8px;text-align:center;">
+            <div style="font-size:1.1rem;">❌ "She can <u>plays</u>"</div>
+            <div style="font-size:0.8rem;color:#991B1B;margin-top:4px;">WRONG / MAL</div>
+          </div>
+          <div style="flex:1;min-width:150px;background:#DCFCE7;padding:10px;border-radius:8px;text-align:center;">
+            <div style="font-size:1.1rem;">✅ "She can <u>play</u>"</div>
+            <div style="font-size:0.8rem;color:#166534;margin-top:4px;">CORRECT / BIEN</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grammar-box" style="margin-bottom:14px;">
+        <h3>Rule 2: CAN does NOT change with he/she/it</h3>
+        <p style="margin-bottom:8px;">No -s, no changes! <em>(¡Sin -s, sin cambios!)</em></p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:150px;background:#FEE2E2;padding:10px;border-radius:8px;text-align:center;">
+            <div>❌ "She <u>cans</u> sing"</div>
+          </div>
+          <div style="flex:1;min-width:150px;background:#DCFCE7;padding:10px;border-radius:8px;text-align:center;">
+            <div>✅ "She <u>can</u> sing"</div>
+          </div>
+        </div>
+        <table class="grammar-table" style="margin-top:12px;">
+          <thead><tr><th>Subject</th><th>Modal</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>I / You / He / She / It / We / They</td><td><span class="tag-green">can ✅</span></td><td>He can swim.</td></tr>
+            <tr><td>He / She / It</td><td><span class="tag-red">cans ❌</span></td><td>He cans swim. ❌</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grammar-box" style="margin-bottom:14px;">
+        <h3>Rule 3: CAN'T vs DON'T/DOESN'T</h3>
+        <table class="grammar-table">
+          <thead><tr><th>Meaning</th><th>Use</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>Not able to (no ability)</td><td><span class="tag-red">can't</span></td><td>I <strong>can't</strong> fly.</td></tr>
+            <tr><td>Not something you do (habit)</td><td>don't/doesn't</td><td>I <strong>don't</strong> eat fish.</td></tr>
+            <tr><td>Not allowed (strong)</td><td><span class="tag-red">can't</span></td><td>You <strong>can't</strong> run here.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grammar-box">
+        <h3>🔊 Pronunciation Notes (Para el docente)</h3>
+        <ul class="example-list">
+          <li><strong>"can"</strong> in a sentence → weak form: /kən/ (sounds like "kun")<br/><em style="font-size:0.8rem;">In "I can swim", "can" is weak and unstressed.</em></li>
+          <li><strong>"CAN"</strong> emphatic → strong form: /kæn/<br/><em style="font-size:0.8rem;">In "Yes, I CAN!", "can" is stressed and clear.</em></li>
+          <li><strong>"can't"</strong> → always clear /t/ at the end<br/><span class="pronounce">🔊 /kɑːnt/ — the /t/ is important!</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Context tab -->
+  <div class="tab-panel" id="grammar-context">
+    <div class="card">
+      <div class="card-title">🎭 CAN / CAN'T in Context</div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;">
+        <div style="border:2px solid #D4FC6A;border-radius:12px;overflow:hidden;">
+          <div style="background:#F0FDF4;padding:14px;">
+            <div style="font-size:1.5rem;margin-bottom:6px;">🏫 At school</div>
+            <ul class="example-list">
+              <li><span class="en">"Can I go to the bathroom?"</span></li>
+              <li><span class="en">"You can use a ruler."</span></li>
+              <li><span class="en">"You can't talk during the test."</span></li>
+            </ul>
+          </div>
+        </div>
+        <div style="border:2px solid #FDBA74;border-radius:12px;overflow:hidden;">
+          <div style="background:#FFF7ED;padding:14px;">
+            <div style="font-size:1.5rem;margin-bottom:6px;">🏠 At home</div>
+            <ul class="example-list">
+              <li><span class="en">"I can help with dinner."</span></li>
+              <li><span class="en">"She can clean her room."</span></li>
+              <li><span class="en">"We can't watch TV now."</span></li>
+            </ul>
+          </div>
+        </div>
+        <div style="border:2px solid #93C5FD;border-radius:12px;overflow:hidden;">
+          <div style="background:#EFF6FF;padding:14px;">
+            <div style="font-size:1.5rem;margin-bottom:6px;">⚽ Sports & Hobbies</div>
+            <ul class="example-list">
+              <li><span class="en">"He can swim very fast."</span></li>
+              <li><span class="en">"I can play the guitar."</span></li>
+              <li><span class="en">"She can't kick the ball."</span></li>
+            </ul>
+          </div>
+        </div>
+        <div style="border:2px solid #F9A8D4;border-radius:12px;overflow:hidden;">
+          <div style="background:#FDF2F8;padding:14px;">
+            <div style="font-size:1.5rem;margin-bottom:6px;">🦁 Animals</div>
+            <ul class="example-list">
+              <li><span class="en">"A bird can fly."</span></li>
+              <li><span class="en">"A fish can swim."</span></li>
+              <li><span class="en">"A cat can't fly."</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="scene-container" style="margin-top:20px;" role="img" aria-label="Playground scene">
+        <img src="assets/playground.svg" alt="Playground scene showing children sliding, swinging, kicking and jumping rope"/>
+        <div style="padding:12px;background:#FFF8F0;font-size:0.88rem;">
+          <strong>🔍 Look at the image:</strong> What can you see? Write sentences!<br/>
+          <em style="color:var(--text-light);">The girl can slide. The boy can kick. The children can jump.</em>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Common Errors tab -->
+  <div class="tab-panel" id="grammar-errors">
+    <div class="card">
+      <div class="card-title">🔧 Common Errors — Error Correction</div>
+      <p style="margin-bottom:16px;color:var(--text-light);">These are mistakes students often make. Study them carefully! <em>(Errores que los estudiantes cometen con frecuencia.)</em></p>
+
+      <div class="error-card">
+        <div><div class="error-wrong">❌ "She can <u>to</u> play"</div><div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">Don't use "to" after can!</div></div>
+        <div class="arrow">→</div>
+        <div class="error-right">✅ "She can play"</div>
+      </div>
+      <div class="error-card">
+        <div><div class="error-wrong">❌ "He <u>cans</u> swim"</div><div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">No -s with he/she/it!</div></div>
+        <div class="arrow">→</div>
+        <div class="error-right">✅ "He can swim"</div>
+      </div>
+      <div class="error-card">
+        <div><div class="error-wrong">❌ "Can you <u>to</u> help me?"</div><div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">No infinitive after can!</div></div>
+        <div class="arrow">→</div>
+        <div class="error-right">✅ "Can you help me?"</div>
+      </div>
+      <div class="error-card">
+        <div><div class="error-wrong">❌ "I <u>don't can</u>"</div><div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">Use can't, not don't can!</div></div>
+        <div class="arrow">→</div>
+        <div class="error-right">✅ "I can't"</div>
+      </div>
+      <div class="error-card">
+        <div><div class="error-wrong">❌ "She can <u>dancing</u>"</div><div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">Use base verb, not -ing!</div></div>
+        <div class="arrow">→</div>
+        <div class="error-right">✅ "She can dance"</div>
+      </div>
+      <div class="error-card">
+        <div><div class="error-wrong">❌ "Can <u>swims</u> he?"</div><div style="font-size:0.8rem;color:var(--text-light);margin-top:2px;">Use base verb in questions!</div></div>
+        <div class="arrow">→</div>
+        <div class="error-right">✅ "Can he swim?"</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:16px;">
+    <button class="btn btn-primary btn-lg" onclick="markSectionDone('grammar');showSection('exercises')">Practice now! ✏️</button>
+  </div>
+</section>
+
+<!-- ===== GLOSSARY ===== -->
+<section class="section-page" id="section-glossary">
+  <div class="section-hero" data-emoji="📚">
+    <h1>Verb Glossary</h1>
+    <p>30+ action verbs for CAN / CAN'T sentences! <em>(Verbos de acción para usar con can/can't)</em></p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ Click a verb to see an example!</div>
+    <div class="glossary-grid" id="glossaryGrid"></div>
+  </div>
+
+  <div class="card hidden" id="verbExample">
+    <div class="card-title" id="verbExTitle">🎯 Example</div>
+    <div id="verbExContent"></div>
+  </div>
+
+  <div style="text-align:center;margin-top:16px;">
+    <button class="btn btn-primary btn-lg" onclick="markSectionDone('glossary');showSection('exercises')">Start Exercises! ✏️</button>
+  </div>
+</section>
+
+<!-- ===== EXERCISES ===== -->
+<section class="section-page" id="section-exercises">
+  <div class="section-hero" data-emoji="✏️">
+    <h1>Exercises</h1>
+    <p>Practice makes perfect! <em>(¡La práctica hace al maestro!)</em></p>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('ex','fill')">Fill in Blank</button>
+    <button class="tab-btn" onclick="switchTab('ex','mc')">Multiple Choice</button>
+    <button class="tab-btn" onclick="switchTab('ex','match')">Matching</button>
+    <button class="tab-btn" onclick="switchTab('ex','image')">Image</button>
+    <button class="tab-btn" onclick="switchTab('ex','tf')">True/False</button>
+    <button class="tab-btn" onclick="switchTab('ex','writing')">Writing</button>
+    <button class="tab-btn" onclick="switchTab('ex','unscramble')">Unscramble</button>
+  </div>
+
+  <!-- Fill in Blank -->
+  <div class="tab-panel active" id="ex-fill">
+    <div class="card">
+      <div class="card-title">✏️ Fill in the Blank</div>
+      <p style="margin-bottom:16px;font-size:0.88rem;color:var(--text-light);">Complete the sentence with: <strong>can / can't / cannot / Can</strong> — or with the correct verb form.</p>
+      <div id="fillExercises"></div>
+      <div style="text-align:center;margin-top:16px;">
+        <button class="btn btn-secondary" onclick="checkAllFill()">Check All ✔️</button>
+        <button class="btn btn-outline btn-sm" onclick="resetFill()" style="margin-left:8px;">Reset 🔄</button>
+      </div>
+      <div class="section-score mt-12 hidden" id="fillScore"></div>
+    </div>
+  </div>
+
+  <!-- Multiple Choice -->
+  <div class="tab-panel" id="ex-mc">
+    <div class="card">
+      <div class="card-title">🎯 Multiple Choice</div>
+      <div id="mcExercises"></div>
+      <div class="section-score mt-12 hidden" id="mcScore"></div>
+    </div>
+  </div>
+
+  <!-- Matching -->
+  <div class="tab-panel" id="ex-match">
+    <div class="card">
+      <div class="card-title">🔗 Matching</div>
+      <p style="margin-bottom:12px;font-size:0.88rem;color:var(--text-light);">Click an item on the left, then click its match on the right. <em>(Clic en la izquierda, luego en la derecha.)</em></p>
+      <div id="matchExercises"></div>
+      <div class="section-score mt-12 hidden" id="matchScore"></div>
+    </div>
+  </div>
+
+  <!-- Image based -->
+  <div class="tab-panel" id="ex-image">
+    <div class="card">
+      <div class="card-title">🖼️ Image Exercises</div>
+      <div id="imageExercises"></div>
+      <div class="section-score mt-12 hidden" id="imageScore"></div>
+    </div>
+  </div>
+
+  <!-- True/False -->
+  <div class="tab-panel" id="ex-tf">
+    <div class="card">
+      <div class="card-title">✅❌ True or False</div>
+      <p style="margin-bottom:12px;font-size:0.88rem;color:var(--text-light);">Look at the picture, then decide: is the sentence TRUE or FALSE?</p>
+      <div class="scene-container" style="margin-bottom:16px;" role="img">
+        <img src="assets/zoo.svg" alt="Zoo scene with bird, fish, elephant and cat"/>
+      </div>
+      <div id="tfExercises"></div>
+      <div class="section-score mt-12 hidden" id="tfScore"></div>
+    </div>
+  </div>
+
+  <!-- Writing -->
+  <div class="tab-panel" id="ex-writing">
+    <div class="card">
+      <div class="card-title">📝 Writing Exercises</div>
+      <div id="writingExercises"></div>
+      <div class="section-score mt-12 hidden" id="writingScore"></div>
+    </div>
+  </div>
+
+  <!-- Unscramble -->
+  <div class="tab-panel" id="ex-unscramble">
+    <div class="card">
+      <div class="card-title">🔀 Unscramble the Sentence</div>
+      <p style="margin-bottom:12px;font-size:0.88rem;color:var(--text-light);">Click the words in the correct order! <em>(Haz clic en las palabras en el orden correcto.)</em></p>
+      <div id="unscrambleExercises"></div>
+      <div class="section-score mt-12 hidden" id="unscrambleScore"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GAMES ===== -->
+<section class="section-page" id="section-games">
+  <div class="section-hero" data-emoji="🎮">
+    <h1>Mini-Games</h1>
+    <p>Learn while playing! <em>(¡Aprende jugando!)</em></p>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('games','sort')">🃏 Sort Cards</button>
+    <button class="tab-btn" onclick="switchTab('games','police')">👮 Permission Police</button>
+    <button class="tab-btn" onclick="switchTab('games','animal')">🦁 Animal Powers</button>
+    <button class="tab-btn" onclick="switchTab('games','rules')">🏫 School Rules</button>
+  </div>
+
+  <!-- Sort game -->
+  <div class="tab-panel active" id="games-sort">
+    <div class="card game-container">
+      <div class="card-title">🃏 Can-Cannot Sort</div>
+      <div style="background:#EEF2FF;border:2px solid #C7D2FE;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:0.88rem;">
+        <strong>How to play / Cómo jugar:</strong><br/>
+        1️⃣ Click a card to select it (it will highlight).<br/>
+        2️⃣ Then click the <strong>✅ CAN</strong> or <strong>❌ CAN'T</strong> column to place it there.<br/>
+        3️⃣ Click a placed card to return it to the bank.<br/>
+        4️⃣ Sort all cards, then click <strong>Check</strong>!
+      </div>
+      <div class="sort-area">
+        <div>
+          <h4 style="margin-bottom:8px;font-weight:800;">📦 Cards to sort:</h4>
+          <div class="sort-cards" id="sortBank"></div>
+        </div>
+        <div>
+          <div class="sort-col can-col" id="sortCan" style="cursor:pointer;" title="Click here to place selected card in CAN">
+            <h4>✅ CAN <span style="font-size:0.75rem;font-weight:400;">(click to place)</span></h4>
+            <div class="sort-cards" id="sortCanItems"></div>
+          </div>
+          <div class="sort-col cant-col" id="sortCant" style="margin-top:12px;cursor:pointer;" title="Click here to place selected card in CAN'T">
+            <h4>❌ CAN'T <span style="font-size:0.75rem;font-weight:400;">(click to place)</span></h4>
+            <div class="sort-cards" id="sortCantItems"></div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:16px;">
+        <button class="btn btn-secondary" onclick="checkSort()">Check ✔️</button>
+        <button class="btn btn-outline btn-sm" onclick="initSort()" style="margin-left:8px;">Reset 🔄</button>
+      </div>
+      <div class="feedback mt-12" id="sortFeedback"></div>
+    </div>
+  </div>
+
+  <!-- Permission Police -->
+  <div class="tab-panel" id="games-police">
+    <div class="card game-container">
+      <div class="card-title">👮 Permission Police</div>
+      <p style="margin-bottom:12px;font-size:0.88rem;color:var(--text-light);">Is this allowed? Decide: CAN or CAN'T! <em>(¿Está permitido?)</em></p>
+      <div class="permission-scenarios" id="policeScenarios"></div>
+      <div class="feedback mt-12 hidden" id="policeFeedback"></div>
+      <div style="text-align:center;margin-top:16px;" id="policeResult"></div>
+    </div>
+  </div>
+
+  <!-- Animal Powers -->
+  <div class="tab-panel" id="games-animal">
+    <div class="card game-container">
+      <div class="card-title">🦁 Animal Powers</div>
+      <p style="margin-bottom:12px;font-size:0.88rem;color:var(--text-light);">Choose the correct ability for each animal!</p>
+      <div class="scene-container" style="margin-bottom:16px;">
+        <img src="assets/zoo.svg" alt="Zoo scene with animals"/>
+      </div>
+      <div class="animal-grid" id="animalGrid"></div>
+      <div style="text-align:center;margin-top:16px;" id="animalResult"></div>
+    </div>
+  </div>
+
+  <!-- School Rules -->
+  <div class="tab-panel" id="games-rules">
+    <div class="card game-container">
+      <div class="card-title">🏫 School Rules Challenge</div>
+      <p style="margin-bottom:12px;font-size:0.88rem;color:var(--text-light);">At school, what CAN and CAN'T you do? <em>(¿Qué puedes y no puedes hacer en la escuela?)</em></p>
+      <div class="scene-container" style="margin-bottom:16px;">
+        <img src="assets/classroom.svg" alt="Classroom scene"/>
+      </div>
+      <div class="rules-list" id="schoolRules"></div>
+      <div style="text-align:center;margin-top:16px;" id="rulesResult"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL QUIZ ===== -->
+<section class="section-page" id="section-quiz">
+  <div class="section-hero" data-emoji="🏆">
+    <h1>Final Quiz</h1>
+    <p>Show what you know! <em>(¡Demuestra lo que sabes!)</em></p>
+  </div>
+
+  <!-- Locked state -->
+  <div class="quiz-locked hidden" id="quizLocked">
+    <div class="lock-icon">🔒</div>
+    <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:8px;">Quiz Completed</h2>
+    <p>You already took the final quiz. Check your results below!</p>
+    <p style="font-size:0.8rem;color:var(--text-light);">Teacher Mode can reset it. / El modo Teacher puede reiniciarlo.</p>
+    <button class="btn btn-outline" onclick="showQuizResults()">📊 See my results</button>
+  </div>
+
+  <!-- Intro state -->
+  <div class="quiz-intro" id="quizIntro">
+    <h2 id="quizIntroTitle">🏆 Ready for the Final Quiz?</h2>
+    <p style="color:var(--text-light);">15 questions — Do your best!</p>
+    <div class="quiz-warning">
+      ⚠️ <strong>Important:</strong> You can only submit this quiz ONCE. Make sure you're ready!<br/>
+      <em style="font-weight:400;">Solo puedes enviar este quiz UNA VEZ. ¡Asegúrate de estar listo!</em>
+    </div>
+    <button class="btn btn-primary btn-lg" onclick="startQuiz()">Start Quiz 🚀</button>
+  </div>
+
+  <!-- Quiz form -->
+  <div id="quizForm" class="hidden">
+    <div class="quiz-form" id="quizQuestions"></div>
+    <div style="text-align:center;margin-top:20px;padding-bottom:20px;">
+      <button class="btn btn-primary btn-lg" onclick="submitQuiz()">Submit Quiz 🏁</button>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="quiz-result" id="quizResult">
+    <div class="confetti-bar"></div>
+    <h2 style="font-family:var(--font-display);font-size:1.5rem;" id="resultTitle">Results</h2>
+    <div class="result-score" id="resultScore">0/15</div>
+    <div id="resultMsg"></div>
+    <div class="result-items" id="resultItems"></div>
+    <div class="review-suggestions hidden" id="reviewSuggestions">
+      <h4>📖 Review these topics:</h4>
+      <ul id="reviewList" style="list-style:disc;padding-left:20px;font-size:0.9rem;line-height:1.8;"></ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Teacher Modal -->
+<div class="modal-overlay" id="teacherModal">
+  <div class="modal-box">
+    <div class="modal-title">🔐 Teacher Mode</div>
+    <p id="teacherModalMsg">Enter the password to activate Teacher Mode:</p>
+    <input type="password" id="teacherPasswordInput" class="modal-input" placeholder="Password..." autocomplete="off"/>
+    <div style="font-size:0.8rem;color:var(--text-light);margin-top:6px;" id="teacherPwError"></div>
+    <div class="modal-btns">
+      <button class="btn btn-outline btn-sm" onclick="closeTeacherModal()">Cancel</button>
+      <button class="btn btn-primary btn-sm" onclick="submitTeacherPassword()">Enter</button>
+    </div>
+  </div>
+</div>
+
+<!-- Teacher Panel -->
+<div class="teacher-panel" id="teacherPanel">
+  <h4>👩‍🏫 Teacher Mode</h4>
+  <button class="btn btn-accent btn-sm" onclick="toggleAnswers()">👁️ Show/Hide Answers</button>
+  <button class="btn btn-secondary btn-sm" onclick="resetQuizTeacher()">🔄 Reset Final Quiz</button>
+  <button class="btn btn-purple btn-sm" onclick="resetStudentName()">👤 Reset Student Name</button>
+  <button class="btn btn-outline btn-sm" onclick="deactivateTeacher()" style="color:white;border-color:rgba(255,255,255,0.4);">✕ Exit Teacher Mode</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
