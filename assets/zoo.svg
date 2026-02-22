@@ -1,1 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" role="img" aria-label="Zoo scene with animals showing different abilities">
+  <!-- Sky -->
+  <rect width="800" height="400" fill="#B3E5FC"/>
+  <!-- Ground -->
+  <rect y="310" width="800" height="90" fill="#8BC34A"/>
+  <!-- Path -->
+  <rect x="0" y="330" width="800" height="20" fill="#D4A84B" rx="2"/>
 
+  <!-- Bird enclosure (top-left) -->
+  <rect x="20" y="40" width="160" height="160" fill="#E8F5E9" stroke="#795548" stroke-width="4" rx="8"/>
+  <!-- Cage bars -->
+  <line x1="60" y1="40" x2="60" y2="200" stroke="#9E9E9E" stroke-width="2"/>
+  <line x1="100" y1="40" x2="100" y2="200" stroke="#9E9E9E" stroke-width="2"/>
+  <line x1="140" y1="40" x2="140" y2="200" stroke="#9E9E9E" stroke-width="2"/>
+  <!-- Bird -->
+  <ellipse cx="100" cy="100" rx="22" ry="16" fill="#FF9800"/>
+  <ellipse cx="100" cy="85" rx="13" ry="12" fill="#FF9800"/>
+  <!-- Wings spread -->
+  <ellipse cx="70" cy="100" rx="28" ry="10" fill="#FF9800" transform="rotate(-20,70,100)"/>
+  <ellipse cx="130" cy="100" rx="28" ry="10" fill="#FF9800" transform="rotate(20,130,100)"/>
+  <!-- Beak -->
+  <polygon points="107,87 115,90 107,93" fill="#FFD600"/>
+  <!-- Eye -->
+  <circle cx="104" cy="84" r="3" fill="#333"/>
+  <text x="100" y="175" font-family="Arial" font-size="11" fill="#4CAF50" text-anchor="middle" font-weight="bold">✅ can fly</text>
+  <text x="100" y="190" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">A bird can fly!</text>
+
+  <!-- Fish enclosure -->
+  <rect x="220" y="40" width="160" height="160" fill="#E3F2FD" stroke="#795548" stroke-width="4" rx="8"/>
+  <rect x="220" y="120" width="160" height="80" fill="#90CAF9" opacity="0.6" rx="0 0 8 8"/>
+  <!-- Fish -->
+  <ellipse cx="300" cy="155" rx="28" ry="16" fill="#FF5722"/>
+  <polygon points="328,155 345,143 345,167" fill="#FF5722"/>
+  <circle cx="285" cy="150" r="4" fill="white"/>
+  <circle cx="285" cy="150" r="2" fill="#333"/>
+  <!-- Bubbles -->
+  <circle cx="295" cy="135" r="4" fill="none" stroke="#90CAF9" stroke-width="2"/>
+  <circle cx="305" cy="125" r="3" fill="none" stroke="#90CAF9" stroke-width="2"/>
+  <text x="300" y="175" font-family="Arial" font-size="11" fill="#4CAF50" text-anchor="middle" font-weight="bold">✅ can swim</text>
+  <text x="300" y="190" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">A fish can swim!</text>
+
+  <!-- Elephant enclosure -->
+  <rect x="420" y="40" width="160" height="160" fill="#EFEBE9" stroke="#795548" stroke-width="4" rx="8"/>
+  <!-- Elephant body -->
+  <ellipse cx="500" cy="140" rx="50" ry="38" fill="#9E9E9E"/>
+  <circle cx="500" cy="105" r="28" fill="#9E9E9E"/>
+  <!-- Trunk -->
+  <path d="M 512 120 Q 530 140 520 165" stroke="#9E9E9E" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <!-- Ear -->
+  <ellipse cx="472" cy="100" rx="16" ry="22" fill="#BDBDBD"/>
+  <!-- Eye -->
+  <circle cx="490" cy="100" r="5" fill="#333"/>
+  <!-- Legs -->
+  <rect x="465" y="170" width="16" height="25" fill="#9E9E9E" rx="4"/>
+  <rect x="490" y="170" width="16" height="25" fill="#9E9E9E" rx="4"/>
+  <text x="500" y="210" font-family="Arial" font-size="10" fill="#F44336" text-anchor="middle" font-weight="bold">❌ can't fly</text>
+
+  <!-- Cat enclosure -->
+  <rect x="620" y="40" width="160" height="160" fill="#FFF9C4" stroke="#795548" stroke-width="4" rx="8"/>
+  <!-- Cat body -->
+  <ellipse cx="700" cy="145" rx="35" ry="28" fill="#FF9800"/>
+  <ellipse cx="700" cy="115" rx="22" ry="20" fill="#FF9800"/>
+  <!-- Ears -->
+  <polygon points="686,100 680,82 696,98" fill="#FF9800"/>
+  <polygon points="714,100 720,82 704,98" fill="#FF9800"/>
+  <!-- Eyes -->
+  <ellipse cx="693" cy="112" rx="4" ry="5" fill="#76FF03"/>
+  <ellipse cx="707" cy="112" rx="4" ry="5" fill="#76FF03"/>
+  <ellipse cx="693" cy="113" rx="2" ry="4" fill="#333"/>
+  <ellipse cx="707" cy="113" rx="2" ry="4" fill="#333"/>
+  <!-- Whiskers -->
+  <line x1="672" y1="120" x2="692" y2="122" stroke="#333" stroke-width="1.5"/>
+  <line x1="672" y1="125" x2="692" y2="124" stroke="#333" stroke-width="1.5"/>
+  <line x1="708" y1="122" x2="728" y2="120" stroke="#333" stroke-width="1.5"/>
+  <line x1="708" y1="124" x2="728" y2="125" stroke="#333" stroke-width="1.5"/>
+  <!-- Tail -->
+  <path d="M 735 148 Q 755 130 748 160" stroke="#FF9800" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <text x="700" y="185" font-family="Arial" font-size="11" fill="#4CAF50" text-anchor="middle" font-weight="bold">✅ can climb</text>
+  <text x="700" y="200" font-family="Arial" font-size="10" fill="#333" text-anchor="middle">A cat can climb!</text>
+
+  <!-- Bottom labels -->
+  <text x="100" y="360" font-family="Arial" font-size="14" fill="#1565C0" text-anchor="middle" font-weight="bold">🐦 Bird</text>
+  <text x="300" y="360" font-family="Arial" font-size="14" fill="#1565C0" text-anchor="middle" font-weight="bold">🐟 Fish</text>
+  <text x="500" y="360" font-family="Arial" font-size="14" fill="#1565C0" text-anchor="middle" font-weight="bold">🐘 Elephant</text>
+  <text x="700" y="360" font-family="Arial" font-size="14" fill="#1565C0" text-anchor="middle" font-weight="bold">🐱 Cat</text>
+</svg>
