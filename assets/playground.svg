@@ -1,1 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" role="img" aria-label="Playground scene with children doing activities">
+  <!-- Sky -->
+  <rect width="800" height="400" fill="#87CEEB"/>
+  <!-- Ground -->
+  <rect y="300" width="800" height="100" fill="#7EC850"/>
+  <!-- Sun -->
+  <circle cx="720" cy="60" r="45" fill="#FFD700"/>
+  <!-- Clouds -->
+  <ellipse cx="150" cy="80" rx="60" ry="30" fill="white" opacity="0.9"/>
+  <ellipse cx="200" cy="70" rx="50" ry="25" fill="white" opacity="0.9"/>
+  <ellipse cx="500" cy="100" rx="70" ry="28" fill="white" opacity="0.9"/>
+  <ellipse cx="560" cy="90" rx="55" ry="22" fill="white" opacity="0.9"/>
 
+  <!-- Slide -->
+  <rect x="80" y="180" width="15" height="120" fill="#CD853F" rx="3"/>
+  <rect x="80" y="180" width="80" height="15" fill="#CD853F" rx="3"/>
+  <line x1="160" y1="195" x2="110" y2="300" stroke="#FF6B35" stroke-width="20" stroke-linecap="round"/>
+  <!-- Kid on slide -->
+  <circle cx="140" cy="235" r="14" fill="#FDBCB4"/>
+  <rect x="132" y="249" width="16" height="18" fill="#FF6B6B" rx="2"/>
+
+  <!-- Swing set -->
+  <rect x="320" y="160" width="10" height="140" fill="#8B4513" rx="3"/>
+  <rect x="440" y="160" width="10" height="140" fill="#8B4513" rx="3"/>
+  <rect x="320" y="160" width="130" height="12" fill="#8B4513" rx="3"/>
+  <!-- Swing ropes -->
+  <line x1="350" y1="172" x2="355" y2="260" stroke="#666" stroke-width="3"/>
+  <line x1="400" y1="172" x2="395" y2="260" stroke="#666" stroke-width="3"/>
+  <!-- Swing seat -->
+  <rect x="350" y="258" width="50" height="8" fill="#4ECDC4" rx="3"/>
+  <!-- Kid on swing -->
+  <circle cx="375" cy="244" r="14" fill="#FDBCB4"/>
+  <rect x="367" y="258" width="15" height="18" fill="#9B59B6" rx="2"/>
+
+  <!-- Soccer ball -->
+  <circle cx="580" cy="295" r="18" fill="white" stroke="#333" stroke-width="2"/>
+  <polygon points="580,277 590,285 587,297 573,297 570,285" fill="#333" opacity="0.5"/>
+
+  <!-- Kid kicking ball -->
+  <circle cx="540" cy="270" r="14" fill="#F5CBA7"/>
+  <rect x="532" y="284" width="15" height="22" fill="#E67E22" rx="2"/>
+  <line x1="545" y1="305" x2="560" y2="295" stroke="#E67E22" stroke-width="5" stroke-linecap="round"/>
+  <line x1="536" y1="306" x2="534" y2="310" stroke="#D35400" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Kid jumping rope -->
+  <circle cx="660" cy="265" r="14" fill="#FDBCB4"/>
+  <rect x="652" y="279" width="14" height="20" fill="#E74C3C" rx="2"/>
+  <!-- Jump rope -->
+  <path d="M 620 285 Q 660 310 700 285" stroke="#8B4513" stroke-width="3" fill="none"/>
+  <line x1="618" y1="284" x2="652" y2="290" stroke="#8B4513" stroke-width="3"/>
+  <line x1="702" y1="284" x2="666" y2="290" stroke="#8B4513" stroke-width="3"/>
+
+  <!-- Labels -->
+  <text x="95" y="370" font-family="Arial" font-size="13" fill="#333" text-anchor="middle">slide ⬆</text>
+  <text x="375" y="370" font-family="Arial" font-size="13" fill="#333" text-anchor="middle">swing ⬆</text>
+  <text x="555" y="370" font-family="Arial" font-size="13" fill="#333" text-anchor="middle">kick ⬆</text>
+  <text x="660" y="370" font-family="Arial" font-size="13" fill="#333" text-anchor="middle">jump ⬆</text>
+</svg>
